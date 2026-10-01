@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', function() {
         emailjs.init('2FT4effYC4SSjt4jV');
     }
 
+    document.querySelectorAll('.video-image img').forEach(image => {
+        if (image.complete && !image.naturalWidth) image.hidden = true;
+        image.addEventListener('error', () => { image.hidden = true; });
+    });
+
     document.querySelectorAll('.video-card').forEach(trigger => {
         trigger.addEventListener('click', () => {
             const videoId = trigger.dataset.videoId;
@@ -38,9 +43,17 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             const onKeydown = event => {
                 if (event.key === 'Escape') closeModal();
-                if (event.key === 'Tab' && !modal.contains(document.activeElement)) {
-                    event.preventDefault();
-                    closeButton.focus();
+                if (event.key === 'Tab') {
+                    if (event.shiftKey && document.activeElement === closeButton) {
+                        event.preventDefault();
+                        iframe.focus();
+                    } else if (!event.shiftKey && document.activeElement === iframe) {
+                        event.preventDefault();
+                        closeButton.focus();
+                    } else if (!modal.contains(document.activeElement)) {
+                        event.preventDefault();
+                        closeButton.focus();
+                    }
                 }
             };
 
@@ -64,7 +77,8 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         const submitButton = bookingForm.querySelector('button[type="submit"]');
         const status = document.getElementById('form-status');
-        const originalButtonText = submitButton.textContent;
+        const buttonLabel = submitButton.firstChild;
+        const originalButtonText = buttonLabel.textContent;
         const name = bookingForm.elements.name.value.trim();
         const email = bookingForm.elements.email.value.trim();
         const request = bookingForm.elements.request.value;
@@ -78,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         status.textContent = '';
         status.classList.remove('error');
-        submitButton.textContent = 'Sending…';
+        buttonLabel.textContent = 'Sending… ';
         submitButton.disabled = true;
 
         try {
@@ -98,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
             status.textContent = 'Could not send your message. Please try again or email black.corekid00@gmail.com.';
             status.classList.add('error');
         } finally {
-            submitButton.textContent = originalButtonText;
+            buttonLabel.textContent = originalButtonText;
             submitButton.disabled = false;
         }
     });
