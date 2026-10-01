@@ -53,7 +53,7 @@ section { scroll-margin-top: 80px; }
 .main-nav { position: relative; z-index: 100; background: var(--ink); border-bottom: 1px solid #2a3029; }
 .nav-inner { min-height: 82px; display: flex; align-items: center; gap: 34px; }
 .nav-logo { flex: none; display: flex; align-items: center; gap: 13px; color: var(--white); }
-.brand-mark { display: grid; place-items: center; width: 46px; height: 46px; background: var(--acid); color: var(--ink); font: 800 1.22rem/.85 var(--display-font); letter-spacing: -.08em; }
+.brand-mark { display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; background: var(--acid); color: var(--ink); font: 800 1.22rem/.85 var(--display-font); letter-spacing: -.08em; }
 .brand-mark span { color: #6a872b; }
 .brand-name { font: 800 1.2rem/.9 var(--display-font); letter-spacing: .035em; }
 .brand-name small { display: block; margin-top: 5px; color: var(--muted); font: 700 .56rem/1.1 'DM Sans', sans-serif; letter-spacing: .12em; }
