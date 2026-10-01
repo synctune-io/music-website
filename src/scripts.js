@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const iframe = document.createElement('iframe');
             iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
             iframe.title = trigger.dataset.videoTitle;
+            iframe.tabIndex = 0;
             iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
             iframe.allowFullscreen = true;
 
@@ -77,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         const submitButton = bookingForm.querySelector('button[type="submit"]');
         const status = document.getElementById('form-status');
-        const buttonLabel = submitButton.firstChild;
+        const buttonLabel = submitButton.querySelector('.submit-label');
         const originalButtonText = buttonLabel.textContent;
         const name = bookingForm.elements.name.value.trim();
         const email = bookingForm.elements.email.value.trim();
