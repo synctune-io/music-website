@@ -221,7 +221,9 @@ section { scroll-margin-top: 80px; }
 .file-upload-label input[type="file"] { position: absolute; width: 1px; height: 1px; opacity: 0; }
 .file-name { display: block; margin-top: 10px; color: var(--muted); font-size: .8rem; }
 .calendar-section { padding: 50px 0 90px; }
-.calendar-frame { min-height: 700px; background: var(--panel); border: 1px solid var(--line); }
+.calendar-frame { height: 700px; background: var(--panel); border: 1px solid var(--line); }
+.calendar-fallback { margin: 18px 0 0; color: var(--muted); font-size: .83rem; }
+.calendar-fallback a { color: var(--acid); text-decoration: underline; text-underline-offset: 3px; }
 
 /* Media dialogs */
 .video-modal, .pdf-modal { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 55px 20px 20px; background: #080a08ed; }
@@ -271,8 +273,8 @@ section { scroll-margin-top: 80px; }
     .section-heading, .course-layout, .bio-layout, .booking-layout { display: grid; grid-template-columns: 1fr; gap: 30px; }
     .section-heading { margin-bottom: 38px; }
     .section-heading h2, .course-intro h2, .bio-statement h2, .booking-copy h2 { font-size: clamp(4.2rem, 13vw, 7rem); }
-    .method-grid { grid-template-columns: 1fr; }
-    .method-card { min-height: 255px; padding: 28px; }
+    .method-grid { grid-template-columns: minmax(0, 1fr); }
+    .method-card { min-width: 0; min-height: 255px; padding: 28px; }
     .method-card + .method-card { border-left: 0; border-top: 1px solid #a8aca2; }
     .method-card h3 { font-size: 3rem; }
     .course-layout, .bio-layout, .booking-layout { gap: 55px; }
@@ -295,15 +297,21 @@ section { scroll-margin-top: 80px; }
     .signal-inner { font-size: 1.15rem; }
     .signal-inner > :nth-child(n+5) { display: none; }
     .section-heading h2, .course-intro h2, .bio-statement h2, .booking-copy h2 { font-size: clamp(3.5rem, 13.5vw, 5.6rem); }
+    .method-card h3 { font-size: clamp(1.85rem, 9vw, 2.5rem); }
     .form-row, .video-grid { grid-template-columns: 1fr; }
     .video-meta { min-height: 130px; }
-    .footer-brand { font-size: 6rem; }
+    .footer-brand { font-size: clamp(3.8rem, 16vw, 5rem); }
     .footer-links { gap: 40px; }
     .footer-bottom { flex-direction: column; }
     .resource-card, .content-header { flex-direction: column; align-items: flex-start; }
     .resource-actions { align-self: stretch; }
     .resource-actions .btn { width: 100%; }
     .page-hero h1 { font-size: clamp(4.4rem, 17vw, 7rem); }
+}
+@media (max-width: 380px) {
+    .nav-inner { gap: 10px; }
+    .brand-name { font-size: 1.05rem; }
+    .brand-name small { font-size: .48rem; }
 }
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
