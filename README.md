@@ -47,6 +47,12 @@ To view the website locally:
 2. Open the `src/index.html` file in your browser
 3. For full functionality (contact forms, booking), ensure you have internet connection
 
+## Deployment
+
+The [Pages workflow](.github/workflows/static.yml) uploads `src/` directly, with no dependency installation or build step. It runs on `main` pushes that change `src/**` or `.github/workflows/static.yml`, skipping documentation-only changes outside the published site.
+
+To redeploy manually, select **Run workflow** on **main** in the workflow's Actions page. Deployments remain serialized without canceling an in-progress deployment.
+
 ## 🤝 Contributing
 
 Interested in contributing to this metal masterpiece? Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines.

@@ -2,9 +2,12 @@
 name: Deploy static content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # Redeploy only when the published site or its deployment workflow changes
   push:
     branches: ["main"]
+    paths:
+      - "src/**"
+      - ".github/workflows/static.yml"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -36,7 +39,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
+          # Upload only the static site
           path: 'src/'
       - name: Deploy to GitHub Pages
         id: deployment
